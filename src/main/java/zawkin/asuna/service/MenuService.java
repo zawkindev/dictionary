@@ -12,7 +12,6 @@ public class MenuService {
             if (key != "*")
                 System.out.println(key + ". " + options.get(key));
 
-
         System.out.print("\nEnter your choice: ");
     }
 

@@ -9,7 +9,6 @@ import java.util.*;
 
 @Controller
 public class MultipleChoiceController {
-    @Autowired
     private WordsRepository wordsRepository;
 
     public void run() {
@@ -20,8 +19,8 @@ public class MultipleChoiceController {
         int totalCorrectAnswers = 0;
 
         for (int i = 0; i < totalTests; i++) {
-            String currentWord = keys[i];         // English word
-            String currentTranslation = wordlist.get(currentWord); // Translation
+            String currentWord = keys[i];                           // English word
+            String currentTranslation = wordlist.get(currentWord);  // Translation
             System.out.printf("\nQuestion (%d/%d): %s - ?\n", i, totalTests, currentWord);
 
             HashMap<String, String> options = generateOptions(currentTranslation, values);

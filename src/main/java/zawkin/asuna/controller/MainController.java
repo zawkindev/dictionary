@@ -11,16 +11,20 @@ import java.util.HashMap;
 
 @Controller
 public class MainController {
-    @Autowired
     private MenuService menuService;
-    @Autowired
     private WordsRepository wordsRepository;
-    @Autowired
     private AddWordController addWordController;
-    @Autowired
     private WordlistController wordlistController;
-    @Autowired
     private MultipleChoiceController multipleChoiceController;
+
+    @Autowired
+    public MainController(MenuService menuService, WordsRepository wordsRepository, AddWordController addWordController, WordlistController wordlistController, MultipleChoiceController multipleChoiceController) {
+        this.menuService = menuService;
+        this.wordsRepository = wordsRepository;
+        this.addWordController = addWordController;
+        this.wordlistController = wordlistController;
+        this.multipleChoiceController = multipleChoiceController;
+    }
 
     private HashMap<String, String> menuOptions = new HashMap<>();
 

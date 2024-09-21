@@ -19,6 +19,8 @@ public class MainController {
     private AddWordController addWordController;
     @Autowired
     private WordlistController wordlistController;
+    @Autowired
+    private MultipleChoiceController multipleChoiceController;
 
     private HashMap<String, String> menuOptions = new HashMap<>();
 
@@ -36,17 +38,19 @@ public class MainController {
             menuService.printMenu(menuOptions);
             String userChoice = ComponentContainer.scanner.next();
             switch (userChoice) {
+                case "1":
+                    multipleChoiceController.run();
+                    menuService.assignMainMenu(menuOptions);
+                    break;
                 case "2":
                     addWordController.run();
                     wordlistController.printList();
                     menuService.assignMainMenu(menuOptions);
+                    ComponentContainer.clearTerminal();
                     break;
                 case "3":
                     wordlistController.printList();
                     menuService.assignMainMenu(menuOptions);
-                    break;
-                case "0":
-                    System.exit(0);
                     break;
                 default:
                     System.out.println("This option doesn't exist!!!");

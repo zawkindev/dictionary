@@ -7,7 +7,7 @@ import java.util.HashMap;
 @Service
 public class MenuService {
     public void printMenu(HashMap<String, String> options) {
-        System.out.print("\n\n" + options.get("*") + "\n\n");
+        System.out.print("\n" + options.get("*") + "\n\n");
         for (String key : options.keySet())
             if (key != "*")
                 System.out.println(key + ". " + options.get(key));

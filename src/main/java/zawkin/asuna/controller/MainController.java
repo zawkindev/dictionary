@@ -13,12 +13,19 @@ import java.util.HashMap;
 public class MainController {
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private WordsRepository wordsRepository;
+    @Autowired
+    private AddWordController addWordController;
+    @Autowired
+    private WordlistController wordlistController;
+
     private HashMap<String, String> menuOptions = new HashMap<>();
 
     public void start() {
         try {
             ComponentContainer.csvFile.createNewFile();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("An error occured");
             e.printStackTrace();
         }
@@ -29,15 +36,20 @@ public class MainController {
             menuService.printMenu(menuOptions);
             String userChoice = ComponentContainer.scanner.next();
             switch (userChoice) {
+                case "2":
+                    addWordController.run();
+                    wordlistController.printList();
+                    menuService.assignMainMenu(menuOptions);
+                    break;
                 case "3":
-                    HashMap<String, String> words = WordsRepository.getWordlist();
-                    for (String key : words.keySet()) {
-                        System.out.println(key + " - " + words.get(key));
-                    }
+                    wordlistController.printList();
                     menuService.assignMainMenu(menuOptions);
                     break;
                 case "0":
                     System.exit(0);
+                    break;
+                default:
+                    System.out.println("This option doesn't exist!!!");
             }
         }
     }

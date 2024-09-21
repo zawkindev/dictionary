@@ -1,17 +1,22 @@
 package zawkin.asuna.repository;
 
+import org.springframework.stereotype.Repository;
 import zawkin.asuna.container.ComponentContainer;
+import zawkin.asuna.model.WordModel;
 
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
+@Repository
 public class WordsRepository {
-    public static HashMap<String, String> getWordlist() {
+    public HashMap<String, String> getWordlist() {
         String fileData = readFile();
-        HashMap<String, String> dictionary = new HashMap<String, String>();
-        String currentWord = "";
+        HashMap<String, String> dictionary = new HashMap<>();
         String previousWord = "";
+        String currentWord = "";
         char c;
         for (int i = 0; i < fileData.length(); i++) {
             c = fileData.charAt(i);
@@ -32,7 +37,7 @@ public class WordsRepository {
         return dictionary;
     }
 
-    public static String readFile() {
+    public String readFile() {
         String data = "";
         try {
             Scanner reader = new Scanner(ComponentContainer.csvFile);
@@ -45,5 +50,16 @@ public class WordsRepository {
             e.printStackTrace();
         }
         return data;
+    }
+
+    public void addWord(WordModel word) {
+        try {
+            FileWriter writer = new FileWriter(ComponentContainer.fileName, true);
+            writer.write(word.convertToCSV());
+            writer.close();
+        }catch (IOException e){
+            System.out.println("An error occured");
+            e.printStackTrace();
+        }
     }
 }

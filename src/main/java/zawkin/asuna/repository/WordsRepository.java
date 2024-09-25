@@ -61,4 +61,12 @@ public class WordsRepository {
         String sql = "insert into dictionary (eng, uzb) values(?, ?)";
         jdbcTemplate.update(sql, word.getName(), word.getTranslation());
     }
+
+    public void createDictionaryTable() {
+        String sql = "create table if not exists dictionary("
+                + "id serial primary key,"
+                + "eng varchar,"
+                + "eng varchar);";
+        jdbcTemplate.update(sql);
+    }
 }

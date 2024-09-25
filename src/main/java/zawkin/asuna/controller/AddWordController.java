@@ -12,11 +12,16 @@ public class AddWordController {
     private WordsRepository wordsRepository;
 
     public void run() {
+        WordModel word = new WordModel();
+
         System.out.print("\nEnter word: ");
         String name = ComponentContainer.scanner.next();
+        word.setEng(name);
+
         System.out.print("Enter translation: ");
         String translation = ComponentContainer.scanner.next();
+        word.setUzb(translation);
 
-        wordsRepository.addWord(new WordModel(name, translation));
+        wordsRepository.addWord(word);
     }
 }

@@ -1,47 +1,36 @@
 package zawkin.asuna.model;
 
+
 public class WordModel {
     private int id;
-    private String name;
-    private String translation;
-
-    public WordModel(String name, String translation) {
-        this.name = name;
-        this.translation = translation;
-    }
-
-    public WordModel(int id, String name, String translation) {
-        this.id = id;
-        this.name = name;
-        this.translation = translation;
-    }
-
+    private String eng;
+    private String uzb;
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEng(String eng) {
+        this.eng = eng;
     }
 
-    public void setTranslation(String translation) {
-        this.translation = translation;
+    public void setUzb(String uzb) {
+        this.uzb = uzb;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getEng() {
+        return eng;
     }
 
-    public String getTranslation() {
-        return translation;
+    public String getUzb() {
+        return uzb;
     }
 
     public String convertToCSV() {
-        return this.name + "," + this.translation + "\n";
+        return this.eng + "," + this.uzb + "\n";
     }
 }

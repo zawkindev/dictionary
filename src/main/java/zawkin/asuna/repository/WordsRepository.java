@@ -1,5 +1,7 @@
 package zawkin.asuna.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import zawkin.asuna.container.ComponentContainer;
 import zawkin.asuna.model.WordModel;
@@ -12,6 +14,9 @@ import java.util.Scanner;
 
 @Repository
 public class WordsRepository {
+    @Autowired
+   private JdbcTemplate jdbcTemplate;
+
     public HashMap<String, String> getWordlist() {
         String fileData = readFile();
         HashMap<String, String> dictionary = new HashMap<>();
@@ -62,4 +67,6 @@ public class WordsRepository {
             e.printStackTrace();
         }
     }
+
+
 }

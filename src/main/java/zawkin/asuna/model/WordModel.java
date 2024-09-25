@@ -10,6 +10,14 @@ public class WordModel {
         this.translation = translation;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getTranslation() {
+        return translation;
+    }
+
     public String convertToCSV() {
         return this.name + "," + this.translation + "\n";
     }

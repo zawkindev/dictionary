@@ -15,7 +15,7 @@ import java.util.Scanner;
 @Repository
 public class WordsRepository {
     @Autowired
-   private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public HashMap<String, String> getWordlist() {
         String fileData = readFile();
@@ -58,15 +58,7 @@ public class WordsRepository {
     }
 
     public void addWord(WordModel word) {
-        try {
-            FileWriter writer = new FileWriter(ComponentContainer.fileName, true);
-            writer.write(word.convertToCSV());
-            writer.close();
-        }catch (IOException e){
-            System.out.println("An error occured");
-            e.printStackTrace();
-        }
+        String sql = "insert into dictionary (eng, uzb) values(?, ?)";
+        jdbcTemplate.update(sql, word.getName(), word.getTranslation());
     }
-
-
 }
